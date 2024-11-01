@@ -1,4 +1,6 @@
-public class ArrayDeque<T>{
+package datastructure;
+
+public class ArrayDeque<T> implements Deque<T>{
     private T[] items;
     private int size;
     private int nextLast ;
