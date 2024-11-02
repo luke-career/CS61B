@@ -18,34 +18,16 @@ public class TestPalindrome {
     }
 
     @Test
-    public void testNoepalindrome(){
-        String test1 = "blue";
-        Boolean actural = palindrome.isPalindrome(test1);
-        assertEquals(true,actural);
+    public void testIspalindrome() {
+        assertTrue(palindrome.isPalindrome("noon"));
+        assertFalse(palindrome.isPalindrome("cat"));
+        assertTrue(palindrome.isPalindrome("c"));
+        assertTrue(palindrome.isPalindrome(""));
+        assertTrue(palindrome.isPalindrome("a"));
+        assertTrue(palindrome.isPalindrome("AAAaAAA"));
+        assertTrue(palindrome.isPalindrome("ABBA"));
+        assertFalse(palindrome.isPalindrome("Aa"));
+        assertFalse(palindrome.isPalindrome("ACDC"));
+        assertFalse(palindrome.isPalindrome("yang"));
     }
-    @Test
-    public void testOneWord(){
-        String test1 = "b";
-        Boolean actural = palindrome.isPalindrome(test1);
-        assertEquals(true,actural);
-    }
-
-    @Test
-    public void testIsepalindrome(){
-        String test1 = "noon";
-        Boolean actural = palindrome.isPalindrome(test1);
-        assertEquals(true,actural);
-    }
-
-    @Test
-    public void testnullepalindrome(){
-        String test1 = " ";
-        Boolean actural = palindrome.isPalindrome(test1);
-        assertEquals(true,actural);
-    }
-
-
-
-
-
 }

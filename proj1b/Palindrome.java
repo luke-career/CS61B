@@ -14,12 +14,13 @@ public class Palindrome {
 
 
     public boolean isPalindrome(String word){
-        Deque<Character> result = new LinkedListDeque<>();
-        if(result.size() > 1){
+        Deque<Character> result = wordToDeque(word);
+        while (result.size() > 1){
             if(result.removeFirst() != result.removeLast()){
                 return false;
             }
         }
         return true;
     }
+
 }
