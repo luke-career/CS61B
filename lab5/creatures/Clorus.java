@@ -1,12 +1,13 @@
 package creatures;
 
-import huglife.Action;
-import huglife.Creature;
-import huglife.Direction;
-import huglife.Occupant;
+import huglife.*;
 
 import java.awt.*;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Map;
+
+import static huglife.HugLifeUtils.randomEntry;
 
 public class Clorus extends Creature {
 
@@ -14,7 +15,6 @@ public class Clorus extends Creature {
     public Clorus(double e) {
         super("clorus");
         energy = e;
-
     }
 
     @Override
@@ -42,7 +42,31 @@ public class Clorus extends Creature {
 
     @Override
     public Action chooseAction(Map<Direction, Occupant> neighbors) {
-        return null;
+        Deque<Direction> emptyNeightbors = new ArrayDeque<Direction>();
+        Deque<Direction> plipNeighbors = new ArrayDeque<>();
+        for(Map.Entry<Direction,Occupant> entry: neighbors.entrySet()){
+            Direction dir = entry.getKey();
+            Occupant occupant = entry.getValue();
+            if(occupant.name() == "empty"){
+                emptyNeightbors.add(dir);
+            }
+            if(occupant.name() == "plip"){
+                plipNeighbors.add(dir);
+            }
+        }
+        if(emptyNeightbors.size() == 0){
+            return new Action(Action.ActionType.MOVE);
+        }
+
+        if(plipNeighbors.size() != 0){
+            return  new Action(Action.ActionType.ATTACK, randomEntry(plipNeighbors));
+        }
+
+        if(this.energy >= 1){
+            return new Action(Action.ActionType.REPLICATE,randomEntry(emptyNeightbors));
+        }
+
+        return new Action(Action.ActionType.STAY,randomEntry(emptyNeightbors));
     }
 
     @Override
