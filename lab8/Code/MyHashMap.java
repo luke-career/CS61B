@@ -1,8 +1,10 @@
+package Code;
+
 import java.util.Iterator;
 import java.util.Set;
 
 
-public class MyHashMap<K,V> implements Map61B<K,V>{
+public class MyHashMap<K,V> implements Map61B<K,V> {
 
     private class Entry<K,V>{
         private K key;
@@ -37,7 +39,7 @@ public class MyHashMap<K,V> implements Map61B<K,V>{
 
 
     public MyHashMap(){
-        table = (Entry<K, V>[]) new Object[capacity];
+        table = new Entry[capacity];
     }
 
 
@@ -57,7 +59,7 @@ public class MyHashMap<K,V> implements Map61B<K,V>{
     public void clear() {
         size = 0;
         threshold = capacity * threshold;
-        table = (Entry<K, V>[]) new Object[capacity];
+        table = new Entry[capacity];
     }
 
     @Override
@@ -103,7 +105,8 @@ public class MyHashMap<K,V> implements Map61B<K,V>{
         int oldCapacity = capacity;
         capacity =  2 * oldCapacity + 1;
         Entry<K,V>[] oldTable = table;
-        for(int i = 0; i < capacity; i++){
+        clear();
+        for(int i = 0; i < oldCapacity; i++){
             for(Entry<K,V> e = oldTable[i] ; e!= null; e = e.next){
                     if(e.deleted != true){
                          continue;
